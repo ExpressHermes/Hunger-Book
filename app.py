@@ -5,6 +5,7 @@ import json
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '4574ff4bc5204581bbcc7c773927a734'
 
+
 def calc(max_Price, people, min_Price, cuisine, locality):
     ansh = Restaurant(max_Price, people, min_Price, cuisine, locality)
     Restaurant.rest(ansh)
@@ -32,10 +33,6 @@ def search():
         return render_template('search.html', title='Search', restaurants=res)
     else:
         return redirect(url_for('home'))
-
-@app.route("/errorP")
-def errorP():
-    return '<h1>Error</h1>'
 
 
 if __name__ == '__main__':
