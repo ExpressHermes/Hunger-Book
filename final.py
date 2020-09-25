@@ -52,7 +52,7 @@ class Restaurant:
 
         def rest_rec(cost, people=2, min_cost=0, cuisine=[], Locality=[], fav_rest="", lko_rest=lko_rest):
 
-            cost = cost+200
+            cost = cost+100+100
 
             x = cost/people
             y = min_cost/people
