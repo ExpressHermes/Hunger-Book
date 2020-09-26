@@ -1,3 +1,8 @@
+import pandas as pd
+import sqlite3
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 class Restaurant:
 
     def __init__(self, max_Price, people, min_Price, cuisine, locality, favr=""):
@@ -11,9 +16,6 @@ class Restaurant:
     @classmethod
     def rest(cls, self):
 
-        import pandas as pd
-        import sqlite3
-
         cnx = sqlite3.connect('roop.db')
         lko_rest = pd.read_sql_query("SELECT * FROM rest", cnx)
         cnx.close()
@@ -22,13 +24,8 @@ class Restaurant:
         def fav(lko_rest1):
 
             lko_rest1 = lko_rest1.reset_index()
-
-            from sklearn.feature_extraction.text import CountVectorizer
-
             count1 = CountVectorizer(stop_words='english')
             count_matrix = count1.fit_transform(lko_rest1['highlights'])
-
-            from sklearn.metrics.pairwise import cosine_similarity
 
             cosine_sim2 = cosine_similarity(count_matrix, count_matrix)
 
