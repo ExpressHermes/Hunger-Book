@@ -1,5 +1,5 @@
 # Hunger-Book
-A web app to get restaurant recommendation based on budget, number of guests, cusine, and locality. As of now, the dataset contains only restaurants of Lucknow, India. 
+A web app to get restaurant recommendation based on budget, number of guests, cuisine, and locality. As of now, the dataset contains only restaurants of Lucknow, India. 
 
 # Requirements
 * Python
