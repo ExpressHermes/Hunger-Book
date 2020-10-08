@@ -63,12 +63,16 @@ nav.bg-custom {
 
 .card-horizontal {
   display: flex !important;
-  flex-warp: no-wrap;
+  flex-wrap: no-wrap;
   flex: 1 1 auto !important;
 }
 
 .timing {
   color: green;
+}
+
+.text-muted {
+  line-height: 2em;
 }
 
 .res-content {
@@ -96,4 +100,13 @@ nav.bg-custom {
   color: white;
   background-color: #0e578e;
   box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  color: white;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  /* Vertically center the text there */
+  background: none;
 }
