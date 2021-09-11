@@ -1,40 +1,46 @@
 {% extends "base.html" %}
-
-{% block CSS %}
-  <link href="{{ url_for('static', filename='search.css')}}" type="text/css" rel="stylesheet">
-{% endblock %}
-
-{% block title %}    
-  Hunger Book - Search
-{% endblock %}
-
 {% block cards %}
-<div class="container restaurant-container" style="color: black;">
-  <ul class="list-unstyled">
-    {%  if restaurants|length > 0  %}
+<div class="container" id="results">
+  <div class="row ">
+    {% if restaurants|length > 0 %}
+    <div class="col-12 mt-5 mb-3 text-center border-bottom">
+      <h4>Results</h4>
+    </div>
     {% for res in restaurants %}
-      <li class="media mt-2 res-card">
-        <img src="https://image.flaticon.com/icons/svg/1980/1980872.svg" width="60px" height="100%" class="mr-3"
-          alt="...">
-        <div class="media-body">
-          <h5 class="mt-0">{{ res.name }}</h5>
-          <p>Rating: <span class="badge badge-success d-inline">{{ res.aggregate_rating }}</span></p>
-          <div class="res-content">
-            <p class="text-muted">{{ res.address }}</p>
-            <p><span class="timing">Timing: {{ res.timings }}</span></p>
-            <button class="more-info"><a href="{{ res.url }}" target="_blank">More Info</a></button>
+    <div class="col-12 col-lg-4 col-xll-4 align-items-stretch">
+      <div class="card px-3 mb-3">
+        <div class="row g-0">
+          <!-- <div class="col-md-4 align-self-center">
+            <img src="/static/omelette.png" class="img-fluid rounded-start" alt="food placeholder" style="max-width: 100%; max-height: 300px;">
+          </div> -->
+          <div class="py-4 col-12">
+            <div class="card-body">
+              <h3 class="card-title">{{ res.name }}</h3>
+              <p class="card-text recipe-metadata">
+                <span class="recipe-rating">{{ '★' * (res.aggregate_rating|int) }}<span>{{ '☆' * (5 -
+                    (res.aggregate_rating|int)) }}</span></span>
+                <span class="recipe-votes">({{ res.votes }} votes)</span>
+              </p>
+              <p class="card-text">{{ res.address }}</p>
+              <div class="col pb-2 ">
+                Timing: {{res.timings}}
+              </div>
+              <div class="col">
+                <a href="{{ res.url }}" target="_blank"><button type="button" class="btn btn-outline-primary">More
+                    Info</button></a>
+              </div>
+            </div>
           </div>
         </div>
-      </li>
-      {% endfor %}
-      {% else %}
-      <li class="mt-2">
-        <div class="text-center align-middle" style="color: white;">
-          <h5>Sorry, No Result Found. :(</h5>
-          <p>Try again</p>
-        </div>
-      </li>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col text-center">
+      <h5>Sorry, No Result Found. :(</h5>
+      <p>Try again</p>
+    </div>
     {% endif %}
-    </ul>
   </div>
+</div>
 {% endblock %}

@@ -2,125 +2,103 @@
 <html lang="en">
 
 <head>
-  {% block head %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700|Merriweather:400,700&display=swap"
-      rel="stylesheet">
-
-    {% block CSS %}      
-    {% endblock %}
-
-    <title>
-      {% block title %}
-        Hunger Book
-      {% endblock %}
-    </title>
-    
-  {% endblock %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- external css -->
+  <link href="{{  url_for('static', filename='base.css')}}" type="text/css" rel="stylesheet">
+  <title>Hunger Book</title>
 </head>
 
 <body>
-  <nav class=" text-center navbar navbar-expand-md navbar-dark bg-custom">
-    <a class="navbar-brand" href="{{ url_for('home') }}"><span class="r-name">Hunger Book</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
-  <div class="container align-items-center">
-    <div class="jumbotron text-center bg-jumbo" style="background: rgba(0, 0, 0, 0.4) !important;">
-    {% block content %}
-    {% endblock %}
-      <div class="container justify-content-start">
-        <form action="{{ url_for('search') }}" method="GET">
-          <div class="row">
-            <div class="col-12 col-md-2">
-              <div class="form-group">
-                <input type="number" class="form-control" min="1" id="people" name="people" placeholder="Guests"
+  <main>
+    <div class="px-4 pt-5 my-5 border-bottom">
+      <h1 class="display-4 text-center fw-bold w-name">Hunger Book</h1>
+      <div class="col-lg-6 mx-auto text-center">
+        <p class="lead mb-4">Hello folks, Have your ever wanted to eat outside with your friends but can't decide on a
+          restaurant?<br>Let HungerBook help you!</p>
+      </div>
+      <div class="container px-5 pt-5">
+        <!-- search form -->
+        <form action="{{ url_for('search') }}" method="GET" id="my-form">
+          <div class="row mb-3 justify-content-center align-items-center">
+            <div class="col-12 col-md-4 col-xl-2">
+              <div class="mb-3">
+                <label class="form-label" for="guests">No. of guests</label>
+                <input class="form-control" type="number" id="guests" name="guests" min="1" placeholder="Eg: 2"
                   required>
               </div>
             </div>
-            <div class="col-6 col-md-2">
-              <div class="form-group">
-                <input type="number" class="form-control" name="min_Price" placeholder="Min Budget" required>
+
+            <div class="col-12 col-md-4 col-xl-2">
+              <div class="mb-3">
+                <label class="form-label" for="minBudget">Min. Budget</label>
+                <input class="form-control" type="number" id="minBudget" name="minBudget" min="100"
+                  placeholder="Eg: 100" required>
               </div>
             </div>
-            <div class="col-6 col-md-2">
-              <div class="form-group">
-                <input type="number" class="form-control" name="max_Price" placeholder="Max Budget" required>
+
+            <div class="col-12 col-md-4 col-xl-2">
+              <div class="mb-3">
+                <label class="form-label" for="maxBudget">Max. Budget</label>
+                <input class="form-control" type="number" id="maxBudget" name="maxBudget" min="100"
+                  placeholder="Eg: 500" required>
               </div>
             </div>
-            <div class="col-12 col-md-3">
-              <div class="form-group">
-                <select class="custom-select" id="cuisine" name="cuisine" placeholder="Cuisine">
-                  <option value="North Indian">North Indian</option>
-                  <option value="Mughlai">Mughlai</option>
+
+            <div class="col-12 col-md-4 col-xl-2">
+              <div class="mb-3">
+                <label class="form-label" for="cuisine">Cuisine</label>
+                <select class="form-select" id="cuisine" name="cuisine">
+                  <option selected value="Awadhi">Awadhi</option>
+                  <option value="Bakery">Bakery</option>
                   <option value="Chinese">Chinese</option>
-                  <option value="South Indian">South Indian</option>
-                  <option value="Awadhi">Awadhi</option>
                   <option value="Continental">Continental</option>
                   <option value="Desserts">Desserts</option>
-                  <option value="Bakery">Bakery</option>
                   <option value="Fast Food">Fast Food</option>
+                  <option value="Mughlai">Mughlai</option>
+                  <option value="North Indian">North Indian</option>
+                  <option value="South Indian">South Indian</option>
                 </select>
               </div>
             </div>
-            <div class="col-12 col-md-2">
-              <div class="form-group">
-                <select class="custom-select" id="locality" name="locality" placeholder="Locality">
-                  <option value="Aliganj">Aliganj</option>
+
+            <div class="col-12 col-md-3">
+              <div class="mb-3">
+                <label class="form-label" for="locality">Locality</label>
+                <select class="form-select" id="locality" name="locality">
+                  <option selected value="Aliganj">Aliganj</option>
                   <option value="Aminabad">Aminabad</option>
-                  <option value="Gomti Nagar">Gomti Nagar</option>
                   <option value="Chowk">Chowk</option>
-                  <option value="Hazratganj">Hazratganj</option>
-                  <option value="Lalbagh">Lalbagh</option>
-                  <option value="Kaiserbagh">Kaiserbagh</option>
-                  <option value="RajajiPuram">RajajiPuram</option>
                   <option value="Charbagh">Charbagh</option>
+                  <option value="Gomti Nagar">Gomti Nagar</option>
+                  <option value="Hazratganj">Hazratganj</option>
+                  <option value="Kaiserbagh">Kaiserbagh</option>
+                  <option value="Lalbagh">Lalbagh</option>
                   <option value="Mahanagar">Mahanagar</option>
-                  <option value="Khurram Nagar">Khurram Nagar</option>
-                </select>
+                  <option value="Mahanagar">Mahanagar</option>
+                  <option value="RajajiPuram">RajajiPuram</option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="row text-center">
-            <div class="col-12">
-              <button class="submit-button"><img src="https://image.flaticon.com/icons/svg/1889/1889949.svg"
-                  width="25px" height="20px" class="mr-2">Get Restaurants</button>
+          <div class="row mb-4 text-center">
+            <div class="col">
+              <input type="submit" class="btn btn-primary px-4 me-sm-3" value="Get Restaurants" id="getRestaurants">
             </div>
-          </div>
         </form>
       </div>
     </div>
-  </div>
-  
-  {% block cards %}
-  {% endblock %}
-
-  <footer class="footer">
-    <div class="text-center container">
-      <span>Co-Developed by Ansh Lehri and Shivam Yadav</span>
+      {% block cards %}
+      {% endblock %}
+  </main>
+  <footer class="footer mt-auto py-3 border-top">
+    <div class="container text-center">
+      <span class="text-muted">Made with &#9749; by Ansh and Shivam.</span>
     </div>
   </footer>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-  </script>
 </body>
 
 </html>
