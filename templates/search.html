@@ -10,16 +10,13 @@
     <div class="col-12 col-lg-4 col-xll-4 align-items-stretch">
       <div class="card px-3 mb-3">
         <div class="row g-0">
-          <!-- <div class="col-md-4 align-self-center">
-            <img src="/static/omelette.png" class="img-fluid rounded-start" alt="food placeholder" style="max-width: 100%; max-height: 300px;">
-          </div> -->
           <div class="py-4 col-12">
             <div class="card-body">
               <h3 class="card-title">{{ res.name }}</h3>
-              <p class="card-text recipe-metadata">
-                <span class="recipe-rating">{{ '★' * (res.aggregate_rating|int) }}<span>{{ '☆' * (5 -
+              <p class="card-text res-metadata">
+                <span class="res-rating">{{ '★' * (res.aggregate_rating|int) }}<span>{{ '☆' * (5 -
                     (res.aggregate_rating|int)) }}</span></span>
-                <span class="recipe-votes">({{ res.votes }} votes)</span>
+                <span class="res-votes">({{ res.votes }} votes)</span>
               </p>
               <p class="card-text">{{ res.address }}</p>
               <div class="col pb-2 ">
@@ -38,7 +35,7 @@
     {% else %}
     <div class="col text-center">
       <h5>Sorry, No Result Found. :(</h5>
-      <p>Try again</p>
+      <p>Try with different values</p>
     </div>
     {% endif %}
   </div>
