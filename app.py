@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, redirect, request
 from final import Restaurant
 
 app = Flask(__name__)
-env_config = os.getenv('APP_SETTINGS', 'config.DevelopmentConfig')
+env_config = os.getenv('APP_SETTINGS', 'config.ProductionConfig')
 app.config.from_object(env_config)
 
 def get_restaurants(max_Price, people, min_Price, cuisine, locality):
